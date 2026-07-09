@@ -33,7 +33,7 @@
 
 ```bash
 # 请将下方的 URL 替换为你 GitHub 仓库中该脚本的真实 Raw 链接
-bash <(curl -sL [https://raw.githubusercontent.com/licong87/你的仓库名/traffic-monitor/traffic-monitor.sh](https://raw.githubusercontent.com/licong87/traffic-monitor/main/dmit-traffic-monitor.sh))
+bash <(curl -sL [https://raw.githubusercontent.com/licong8/traffic-monitor/traffic-monitor.sh](https://raw.githubusercontent.com/licong87/traffic-monitor/traffic-monitor.sh))
 ```
 
 ### 配置向导将询问你以下信息：
