@@ -109,10 +109,10 @@ CURRENT_YM=\$(date +%Y-%m)
 
 MESSAGE="📊 *\${NODE_NAME} 流量日报*
 
-🔹 总流量: \${LIMIT_GB}.00 GB
-🔸 已使用: \${USED_GB} GB (\${USAGE_PERCENT}%)
-✅ 剩余流量: \${REMAINING_GB} GB
-📅 重置日期: \${CURRENT_YM}-\${RESET_DAY}"
+🔵 总流量: \${LIMIT_GB}.00 GB
+🟠 已使用: \${USED_GB} GB (\${USAGE_PERCENT}%)
+🟢 剩余流量: \${REMAINING_GB} GB
+🔄 重置日期: \${CURRENT_YM}-\${RESET_DAY}"
 
 curl -s -X POST "https://api.telegram.org/bot\${TG_BOT_TOKEN}/sendMessage" \\
     -d "chat_id=\${TG_CHAT_ID}" \\
