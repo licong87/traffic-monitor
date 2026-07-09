@@ -64,6 +64,6 @@ bash <(curl -sL https://raw.githubusercontent.com/licong87/traffic-monitor/main/
 2. 删除脚本与依赖：
 
 ```bash
-rm -f /root/traffic-monitor.sh
+rm -f /root/tg_traffic_push.sh
 apt-get purge -y vnstat jq
 ```
