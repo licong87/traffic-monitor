@@ -33,34 +33,39 @@
 
 ```bash
 # 请将下方的 URL 替换为你 GitHub 仓库中该脚本的真实 Raw 链接
-bash <(curl -sL [https://raw.githubusercontent.com/用户名/仓库名/main/脚本名.sh](https://raw.githubusercontent.com/用户名/仓库名/main/脚本名.sh))
+bash <(curl -sL [https://raw.githubusercontent.com/你的用户名/你的仓库名/main/dmit-traffic-monitor.sh](https://raw.githubusercontent.com/你的用户名/你的仓库名/main/dmit-traffic-monitor.sh))
+```
 
+### 配置向导将询问你以下信息：
 
-配置向导将询问你以下信息：
-节点名称 (如: DMIT-HK，默认: VPS)
+1. **节点名称** (如: `DMIT-HK`，默认: `VPS`)
+2. **监听网卡** (智能列表按数字选择)
+3. **每月总流量限制** (如: `2000`)
+4. **流量重置日** (1-31 的数字，请填写你真实的账单日)
+5. **Telegram Bot Token** (通过 [@BotFather](https://t.me/BotFather) 获取)
+6. **Telegram Chat ID** (通过 [@userinfobot](https://t.me/userinfobot) 获取)
+7. **推送时间** (如: `21` 代表晚上9点，`8,20` 代表早八晚八)
 
-监听网卡 (智能列表按数字选择)
+## 💡 进阶技巧
 
-每月总流量限制 (如: 2000)
-
-流量重置日 (1-31 的数字，请填写你真实的账单日)
-
-Telegram Bot Token (通过 @BotFather 获取)
-
-Telegram Chat ID (通过 @userinfobot 获取)
-
-推送时间 (如: 21 代表晚上9点，8,20 代表早八晚八)💡 进阶技巧
-1. 立即测试推送
+### 1. 立即测试推送
 部署完成后，无需等待定时任务，直接在终端输入以下命令可立即发送一条状态测试：
 
+```bash
 /root/tg_traffic_push.sh
+```
 
-2. vnstat 数据初始化说明
-如果脚本刚安装完成，测试推送显示为 0 GB，请不要慌张。vnstat 需要几分钟的时间来收集网卡的初始数据，稍等片刻后再次运行即可看到真实数据。📝 卸载说明
+### 2. vnstat 数据初始化说明
+如果脚本刚安装完成，测试推送显示为 `0 GB`，请不要慌张。`vnstat` 需要几分钟的时间来收集网卡的初始数据，稍等片刻后再次运行即可看到真实数据。
+
+## 📝 卸载说明
+
 如果你需要卸载，只需两步即可清理干净：
 
-移除定时任务：输入 crontab -e，删除带有 /root/tg_traffic_push.sh 的那一行。
+1. 移除定时任务：输入 `crontab -e`，删除带有 `/root/tg_traffic_push.sh` 的那一行。
+2. 删除脚本与依赖：
 
-删除脚本与依赖：
+```bash
 rm -f /root/tg_traffic_push.sh
 apt-get purge -y vnstat jq
+```
