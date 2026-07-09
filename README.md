@@ -31,10 +31,8 @@
 
 连接到你的服务器 SSH，直接运行以下命令即可启动可视化配置向导：
 
-```bash
-# 请将下方的 URL 替换为你 GitHub 仓库中该脚本的真实 Raw 链接
-bash <(curl -sL [https://raw.githubusercontent.com/licong8/traffic-monitor/traffic-monitor.sh](https://raw.githubusercontent.com/licong87/traffic-monitor/traffic-monitor.sh))
-```
+# 一键安装脚本
+bash <(curl -sL https://raw.githubusercontent.com/licong87/traffic-monitor/main/traffic-monitor.sh)
 
 ### 配置向导将询问你以下信息：
 
