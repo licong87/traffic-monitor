@@ -60,10 +60,10 @@ bash <(curl -sL https://raw.githubusercontent.com/licong87/traffic-monitor/main/
 
 如果你需要卸载，只需两步即可清理干净：
 
-1. 移除定时任务：输入 `crontab -e`，删除带有 `/root/tg_traffic_push.sh` 的那一行。
+1. 移除定时任务：输入 `crontab -e`，删除带有 `/root/traffic-monitor.sh` 的那一行。
 2. 删除脚本与依赖：
 
 ```bash
-rm -f /root/tg_traffic_push.sh
+rm -f /root/traffic-monitor.sh
 apt-get purge -y vnstat jq
 ```
