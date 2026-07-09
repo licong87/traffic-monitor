@@ -105,14 +105,35 @@ USED_GB=\$(awk "BEGIN {printf \\"%.2f\\", \$TOTAL_BYTES / 1024 / 1024 / 1024}")
 REMAINING_GB=\$(awk "BEGIN {printf \\"%.2f\\", \$LIMIT_GB - \$USED_GB}")
 USAGE_PERCENT=\$(awk "BEGIN {printf \\"%.1f\\", (\$USED_GB / \$LIMIT_GB) * 100}")
 
-CURRENT_YM=\$(date +%Y-%m)
+# 计算下一次重置日期 (处理跨月和跨年逻辑，并防止 08 09 被当做八进制报错)
+C_DAY=\$((10#\$(date +%d)))
+R_DAY=\$((10#\$RESET_DAY))
+C_MONTH=\$((10#\$(date +%m)))
+C_YEAR=\$(date +%Y)
+
+if [ "\$C_DAY" -ge "\$R_DAY" ]; then
+    # 已经过了重置日，推算到下个月
+    N_MONTH=\$((C_MONTH + 1))
+    N_YEAR=\$C_YEAR
+    if [ "\$N_MONTH" -gt 12 ]; then
+        N_MONTH=1
+        N_YEAR=\$((C_YEAR + 1))
+    fi
+else
+    # 还没到重置日，就在本月
+    N_MONTH=\$C_MONTH
+    N_YEAR=\$C_YEAR
+fi
+
+# 格式化日期，自动补齐两位数 (如 2026-08-04)
+NEXT_RESET_DATE=\$(printf "%04d-%02d-%02d" "\$N_YEAR" "\$N_MONTH" "\$R_DAY")
 
 MESSAGE="📊 *\${NODE_NAME} 流量日报*
 
 🔵 总流量: \${LIMIT_GB}.00 GB
 🟠 已使用: \${USED_GB} GB (\${USAGE_PERCENT}%)
 🟢 剩余流量: \${REMAINING_GB} GB
-🔄 重置日期: \${CURRENT_YM}-\${RESET_DAY}"
+🔄 重置日期: \${NEXT_RESET_DATE}"
 
 curl -s -X POST "https://api.telegram.org/bot\${TG_BOT_TOKEN}/sendMessage" \\
     -d "chat_id=\${TG_CHAT_ID}" \\
